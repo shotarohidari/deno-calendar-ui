@@ -19,18 +19,22 @@ export function calendar({
 }): Calendar {
   const cal = new Temporal.Calendar("iso8601")
   const yearMonth = Temporal.PlainYearMonth.from({ year, month })
-  return [...range({ start: 1, end: cal.daysInMonth(yearMonth) })].map(
-    (day) => {
-      const date = Temporal.PlainDate.from({
-        year,
-        month,
-        day,
-      })
-      return {
-        day,
-        dayOfWeek: dayOfWeek[date.dayOfWeek - 1],
-      }
-    },
-    []
-  )
+  return {
+    year,
+    month,
+    values: [...range({ start: 1, end: cal.daysInMonth(yearMonth) })].map(
+      (day) => {
+        const date = Temporal.PlainDate.from({
+          year,
+          month,
+          day,
+        })
+        return {
+          day,
+          dayOfWeek: dayOfWeek[date.dayOfWeek - 1],
+        }
+      },
+      []
+    ),
+  }
 }

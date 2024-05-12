@@ -9,6 +9,10 @@ export const dayOfWeek = [
 ] as const
 export type DayOfWeek = (typeof dayOfWeek)[number]
 export type Calendar = {
-  day: number
-  dayOfWeek: DayOfWeek
-}[]
+  year: number
+  month: number
+  values: {
+    day: number
+    dayOfWeek: DayOfWeek
+  }[]
+}
